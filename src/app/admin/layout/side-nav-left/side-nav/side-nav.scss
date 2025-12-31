@@ -1,0 +1,50 @@
+// @use '../../../../scss/variables' as vars;
+
+
+.avatar {
+  background-image: url('https://img.pikbest.com/png-images/20241022/stealth-masked-hacker-gaming-logo-for-gamers_10991543.png!w700wp');
+  background-size: cover;
+}
+
+.active-link {
+  font-weight: bold !important;
+}
+
+.mat-nav-list {
+  width: 100%;
+
+  a {
+    .mat-icon {
+      margin-right: 18px;
+    }
+
+    display: block;
+  }
+}
+
+.nested-menu {
+  .nested {
+    list-style-type: none;
+  }
+
+  .submenu {
+    display: none;
+    height: 0;
+  }
+
+  & .expand {
+    &.submenu {
+      display: block;
+      list-style-type: none;
+      height: auto;
+      margin: 0;
+
+      li {
+        a {
+          padding: 10px;
+          display: block;
+        }
+      }
+    }
+  }
+}
