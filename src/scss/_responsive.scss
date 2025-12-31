@@ -1,0 +1,47 @@
+ /* =========================================================
+   Breakpoints
+========================================================= */
+$handset: 360px;
+$large-handset: 480px;
+$tablet: 640px; /* app drawer breakpoint */
+$large-tablet: 840px;
+$desktop: 960px;
+$large-desktop: 1280px;
+$x-large-desktop: 1440px;
+$xx-large-desktop: 1920px;
+
+/* =========================================================
+   Width breakpoints
+========================================================= */
+
+/* min-width */
+@mixin breakpoint($point) {
+  @media (min-width: $point) {
+    @content;
+  }
+}
+
+/* max-width (use sparingly) */
+@mixin breakpoint-max($point) {
+  @media (max-width: $point) {
+    @content;
+  }
+}
+
+/* =========================================================
+   Height breakpoints
+========================================================= */
+
+/* min-height */
+@mixin height-breakpoint($point) {
+  @media (min-height: $point) {
+    @content;
+  }
+}
+
+/* max-height (FIXED ✅) */
+@mixin height-breakpoint-max($point) {
+  @media (max-height: $point) {
+    @content;
+  }
+}

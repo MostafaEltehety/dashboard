@@ -1,0 +1,47 @@
+ @use '@angular/material' as mat;
+@use './variables' as vars;
+
+/* =========================================================
+   Global Typography Helper
+   (Material 3 does not support define-typography-config)
+========================================================= */
+.font-regular {
+  font-family: vars.$font-family;
+}
+
+/* =========================================================
+   Responsive Typography (optional utilities)
+========================================================= */
+@media (max-width: 1920px) {
+  .font-regular {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .font-regular {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 960px) {
+  .font-regular {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 600px) {
+  .font-regular {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   Material 3 Theme Typography Integration
+========================================================= */
+@include mat.theme((
+  typography: (
+    plain-family: vars.$font-family,
+    brand-family: vars.$font-family,
+  ),
+));
