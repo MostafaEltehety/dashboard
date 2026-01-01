@@ -1,48 +1,42 @@
+ <div class="layout-container font-regular mat-app-background">
 
-<div class="layout-container font-regular mat-app-background">
-<app-top-nav (sideNavToggled)="onToobbarMenuToggle()"></app-top-nav>
-<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="toolBarHeight" [hasBackdrop]="false">
-<mat-sidenav #snav position="start" disableClose="true" role="navigation" class="sidenav mat-elevation-z10" [mode]="sideNavMode" [(opened)]="sideNavDefaultOpened"
-[ngStyle]="{'wiidth.px':isExpanded ? openedWidth:closedWidth}"
->
+  <app-top-nav
+    (sideNavToggled)="onToobbarMenuToggle()">
+  </app-top-nav>
 
-<app-side-nav *ngIf="showFullMenu;else elseBlock"></app-side-nav>
+  <mat-sidenav-container
+    class="sidenav-container"
+    [style.marginTop.px]="toolBarHeight"
+    [hasBackdrop]="isMobile">
 
-<ng-template #elseBlock>
-  <app-side-nav-closed></app-side-nav-closed>
-</ng-template>
-</mat-sidenav>
-<mat-sidenav-content role="origin" id="sidenav-content" [ngStyle]="{'margin-left.px':isExpanded && !isMobile ? openedWidth : closedWidth}">
-<main class="main-container">
-  <router-outlet></router-outlet>
-</main>
-</mat-sidenav-content>
+    <mat-sidenav
+      #snav
+      position="start"
+      role="navigation"
+      class="sidenav mat-elevation-z10"
+      [mode]="sideNavMode"
+      [opened]="sideNavDefaultOpened"
+      [ngStyle]="{ 'width.px': isExpanded ? openedWidth : closedWidth }">
 
-</mat-sidenav-container>
+      <app-side-nav  [isExpanded]="isExpanded" *ngIf="showFullMenu; else closedMenu"></app-side-nav>
 
+      <ng-template #closedMenu>
+        <app-side-nav-closed></app-side-nav-closed>
+      </ng-template>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content
+      id="sidenav-content"
+      [ngStyle]="{
+        'margin-left.px': !isMobile ? (isExpanded ? openedWidth : closedWidth) : 0
+      }">
+
+      <main class="main-container">
+        <router-outlet></router-outlet>
+      </main>
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
 </div>
-
-
-
-<!--
-<mat-nav-list>
-  <mat-card>
-    <mat-card-header>
-<div mat-card-avatar class="avatar"></div>
-      <mat-card-title></mat-card-title>
-      <mat-card-subtitle></mat-card-subtitle>
-    </mat-card-header>
-
-  </mat-card>
- <mat-nav-list>
-  <a mat-list-item
-     *ngFor="let item of routes; let i = index"
-     [routerLinkActive]="'active-link'"
-     [routerLink]="['/', item.path]">
-    <mat-icon class="sidenav-icon">{{ item.data.icon }}</mat-icon>
-    {{ item.data.label }}
-  </a>
-</mat-nav-list>
-
-
-</mat-nav-list> -->

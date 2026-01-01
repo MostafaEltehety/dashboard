@@ -1,20 +1,33 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { RouterModule, RouterLinkActive } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
-import { AdminRoutingModule } from '../../../admin-routing-module';
-import { MatIcon } from '@angular/material/icon';
-import { NgFor } from '@angular/common';
-import { RouterLinkActive, RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { childRoutes } from '../../../child-routes';
 
 @Component({
   selector: 'app-side-nav-closed',
-  imports: [MatCardModule, MatListModule, NgFor,RouterLinkActive,RouterModule, MatIcon],
+  standalone: true,
   templateUrl: './side-nav-closed.html',
   styleUrl: './side-nav-closed.scss',
+  imports: [
+    NgFor,
+    RouterModule,
+    RouterLinkActive,
+    MatCardModule,
+    MatListModule,
+    MatIconModule,
+    MatTooltipModule
+  ]
 })
 export class SideNavClosed {
-  showMenu = false;
   routes = childRoutes;
+
+  trackByPath(_: number, item: any) {
+    return item.path;
+  }
 }

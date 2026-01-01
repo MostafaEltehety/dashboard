@@ -1,12 +1,26 @@
-<mat-nav-list>
-  <mat-card>
+ <mat-nav-list class="closed-nav">
+
+  <!-- Avatar فقط -->
+  <mat-card class="avatar-card">
     <mat-card-header>
       <div mat-card-avatar class="avatar"></div>
     </mat-card-header>
   </mat-card>
-  <a mat-list-item *ngFor="let item of routes"  [routerLinkActive]="'active-link'"
-    [routerLink]="['/',item.path]">
-    <mat-icon class="sidenav-icon">{{item.data?.['icon']}}</mat-icon>
+
+  <!-- Icons only menu -->
+  <a
+    mat-list-item
+    *ngFor="let item of routes; trackBy: trackByPath"
+    [routerLink]="['/', item.path]"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [matTooltip]="item.data?.['text']"
+    matTooltipPosition="right">
+
+    <mat-icon class="sidenav-icon">
+      {{ item.data?.['icon'] }}
+    </mat-icon>
+
   </a>
 
 </mat-nav-list>
