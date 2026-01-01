@@ -1,12 +1,13 @@
  import { Component, Input } from '@angular/core';
-import { childRoutes } from '../../../child-routes';
 import { NgFor, NgIf } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
-import { MatNavList } from '@angular/material/list';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle } from '@angular/material/card';
-import { MatIcon } from '@angular/material/icon';
-import { RouterModule, RouterLinkActive } from '@angular/router';
-import { MatTooltip } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { childRoutes } from '../../../child-routes';
 
 @Component({
   selector: 'app-side-nav',
@@ -16,20 +17,16 @@ import { MatTooltip } from '@angular/material/tooltip';
   imports: [
     NgFor,
     NgIf,
-    RouterModule,
+    RouterLink,
     RouterLinkActive,
-    MatNavList,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardSubtitle,
-    MatIcon,
-    MatTooltip
+    MatListModule,
+    MatCardModule,
+    MatIconModule,
+    MatTooltipModule
   ]
 })
 export class SideNav {
   @Input() isExpanded = true;
-
   routes = childRoutes;
 
   trackByPath(_: number, item: any) {

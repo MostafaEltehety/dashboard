@@ -1,42 +1,32 @@
- <div class="layout-container font-regular mat-app-background">
+ <mat-sidenav-container
+  class="sidenav-container"
+  [style.marginTop.px]="toolBarHeight"
+  [hasBackdrop]="isMobile">
 
-  <app-top-nav
-    (sideNavToggled)="onToobbarMenuToggle()">
-  </app-top-nav>
+  <mat-sidenav
+    #snav
+    class="sidenav"
+    [mode]="sideNavMode"
+    [opened]="sideNavOpened"
+    [style.width.px]="isExpanded ? openedWidth : closedWidth">
 
-  <mat-sidenav-container
-    class="sidenav-container"
-    [style.marginTop.px]="toolBarHeight"
-    [hasBackdrop]="isMobile">
+    <app-side-nav
+      *ngIf="isExpanded; else closedMenu"
+      [isExpanded]="isExpanded">
+    </app-side-nav>
 
-    <mat-sidenav
-      #snav
-      position="start"
-      role="navigation"
-      class="sidenav mat-elevation-z10"
-      [mode]="sideNavMode"
-      [opened]="sideNavDefaultOpened"
-      [ngStyle]="{ 'width.px': isExpanded ? openedWidth : closedWidth }">
+    <ng-template #closedMenu>
+      <app-side-nav-closed />
+    </ng-template>
 
-      <app-side-nav  [isExpanded]="isExpanded" *ngIf="showFullMenu; else closedMenu"></app-side-nav>
+  </mat-sidenav>
 
-      <ng-template #closedMenu>
-        <app-side-nav-closed></app-side-nav-closed>
-      </ng-template>
+  <mat-sidenav-content
+    [style.marginLeft.px]="!isMobile ? (isExpanded ? openedWidth : closedWidth) : 0">
 
-    </mat-sidenav>
+    <main class="main-container">
+      <router-outlet></router-outlet>
+    </main>
 
-    <mat-sidenav-content
-      id="sidenav-content"
-      [ngStyle]="{
-        'margin-left.px': !isMobile ? (isExpanded ? openedWidth : closedWidth) : 0
-      }">
-
-      <main class="main-container">
-        <router-outlet></router-outlet>
-      </main>
-
-    </mat-sidenav-content>
-
-  </mat-sidenav-container>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

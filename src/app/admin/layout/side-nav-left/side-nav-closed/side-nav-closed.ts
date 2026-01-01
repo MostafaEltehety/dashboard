@@ -1,6 +1,6 @@
  import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
-import { RouterModule, RouterLinkActive } from '@angular/router';
+import { RouterModule, RouterLinkActive, RouterLink } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
@@ -15,14 +15,15 @@ import { childRoutes } from '../../../child-routes';
   templateUrl: './side-nav-closed.html',
   styleUrl: './side-nav-closed.scss',
   imports: [
-    NgFor,
-    RouterModule,
-    RouterLinkActive,
-    MatCardModule,
-    MatListModule,
-    MatIconModule,
-    MatTooltipModule
-  ]
+  NgFor,
+  RouterLink,
+  RouterLinkActive,
+  MatCardModule,
+  MatListModule,
+  MatIconModule,
+  MatTooltipModule
+]
+
 })
 export class SideNavClosed {
   routes = childRoutes;

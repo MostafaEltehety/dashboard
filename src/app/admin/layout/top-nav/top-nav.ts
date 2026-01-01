@@ -14,17 +14,19 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './top-nav.scss',
 })
 export class TopNav {
-@Output() sideNavToggled=new EventEmitter<void>();
+
 
  router=inject(Router);
 
-toggleSidbar(){
-  this.sideNavToggled.emit();
-}
 
 onLoggedout(){
   localStorage.removeItem('liLoggedin');
   this.router.navigate(['/']);
+}@Output() sideNavToggled = new EventEmitter<void>();
+
+toggleSidebar() {
+  this.sideNavToggled.emit();
 }
+
 
 }
