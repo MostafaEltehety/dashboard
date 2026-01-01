@@ -1,0 +1,17 @@
+.app-container {
+  height: 100vh;
+}
+
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.content {
+  padding: 16px;
+}
+
+.spacer {
+  flex: 1;
+}
