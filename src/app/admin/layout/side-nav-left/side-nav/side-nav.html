@@ -1,1 +1,15 @@
-<p>side-nav works!</p>
+ <mat-nav-list>
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="avatar"></div>
+      <mat-card-title>Setech UOK</mat-card-title>
+      <mat-card-subtitle>Admin</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+  <a mat-list-item *ngFor="let item of routes"  [routerLinkActive]="'active-link'"
+    [routerLink]="['/',item.path]">
+    <mat-icon class="sidenav-icon">{{item.data?.['icon']}}</mat-icon>
+    <span>{{item.data?.['text']}}</span>
+  </a>
+
+</mat-nav-list>
