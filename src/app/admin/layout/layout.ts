@@ -15,62 +15,10 @@ import { SideNavClosed } from './side-nav-left/side-nav-closed/side-nav-closed';
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
   imports: [
-    MatSidenavModule,
-    RouterOutlet,
-    NgIf,
-    
-    SideNav,
-    SideNavClosed
+
 ]
 })
-export class Layout implements OnInit, OnDestroy {
+export class Layout  {
 
-  @ViewChild('snav') sideNav!: MatSidenav;
-
-  isMobile = false;
-  isExpanded = true;
-
-  closedWidth = 75;
-  openedWidth = 250;
-
-  sideNavMode: 'side' | 'over' = 'side';
-  sideNavOpened = true;
-  toolBarHeight = 64;
-
-  private mediaWatcher!: Subscription;
-
-  constructor(private breakpointObserver: BreakpointObserver) {}
-
-  ngOnInit(): void {
-    this.mediaWatcher = this.breakpointObserver
-      .observe([Breakpoints.XSmall, Breakpoints.Small])
-      .subscribe(({ matches }) => {
-
-        this.isMobile = matches;
-
-        if (matches) {
-          this.sideNavMode = 'over';
-          this.sideNavOpened = false;
-          this.isExpanded = false;
-          this.toolBarHeight = 56;
-        } else {
-          this.sideNavMode = 'side';
-          this.sideNavOpened = true;
-          this.isExpanded = true;
-          this.toolBarHeight = 64;
-        }
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.mediaWatcher?.unsubscribe();
-  }
-
-  onToolbarMenuToggle(): void {
-    if (this.isMobile) {
-      this.sideNav.toggle();
-    } else {
-      this.isExpanded = !this.isExpanded;
-    }
-  }
+  
 }
