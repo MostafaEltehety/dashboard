@@ -1,52 +1,121 @@
+ /* ========================================== */
+/* Angular Material 21 Modern CSS Variables   */
+/* ========================================== */
 
-/* =========================================================
-   Angular Material
-========================================================= */
+/* Core Material styles */
 @use '@angular/material' as mat;
+@include mat.core();
 
-/* =========================================================
-   Project SCSS modules
-========================================================= */
-@use './scss/variables' as *;
-@use './scss/material';
-@use './scss/theme';
-@use './scss/utils';
-@use './scss/responsive';
+/* ================= LIGHT THEME ================= */
+:root {
+  /* Colors */
+  --mdc-theme-primary: #3f51b5;   /* Indigo */
+  --mdc-theme-secondary: #e91e63; /* Pink */
+  --mdc-theme-background: #ffffff;
+  --mdc-theme-surface: #ffffff;
+  --mdc-theme-error: #f44336;
 
-/* =========================================================
-   Global styles & Material theme
-========================================================= */
-html {
-  height: 100%;
+  /* Text / icons on top of colors */
+  --mdc-theme-on-primary: #ffffff;
+  --mdc-theme-on-secondary: #ffffff;
+  --mdc-theme-on-surface: #000000;
+  --mdc-theme-on-error: #ffffff;
 
-  @include mat.theme((
-    color: (
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: (
-      plain-family: $font-family,
-      brand-family: $font-family,
-    ),
-    density: 0,
-  ));
+  /* Layout sizes */
+  --toolbar-height: 64px;
+  --toolbar-height-mobile: 56px;
+  --sidenav-width: 240px;
+
+  /* Typography (optional) */
+  --font-family: 'Roboto', sans-serif;
+  --font-size: 14px;
 }
 
+/* ================= DARK THEME ================= */
+.dark-theme {
+  --mdc-theme-primary: #673ab7;   /* Deep Purple */
+  --mdc-theme-secondary: #00bcd4; /* Cyan */
+  --mdc-theme-background: #121212;
+  --mdc-theme-surface: #1e1e1e;
+  --mdc-theme-error: #f44336;
+
+  --mdc-theme-on-primary: #ffffff;
+  --mdc-theme-on-secondary: #000000;
+  --mdc-theme-on-surface: #ffffff;
+  --mdc-theme-on-error: #ffffff;
+}
+
+/* ================= GLOBAL STYLING ================= */
 body {
-  /* Default application theme */
-  color-scheme: light;
-
-  /* Material system variables */
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  /* Reset */
   margin: 0;
-  height: 100%;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  background-color: var(--mdc-theme-background);
+  color: var(--mdc-theme-on-surface);
+  transition: background-color 0.3s, color 0.3s;
 }
 
-html,
-body {
-  height: 100%;
+/* Links */
+a {
+  color: var(--mdc-theme-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ================= APP LAYOUT ================= */
+.app-container {
+  height: 100vh;
+}
+
+mat-sidenav {
+  width: var(--sidenav-width);
+}
+
+mat-toolbar.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: var(--toolbar-height);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.content {
+  padding: 16px;
+  min-height: calc(100vh - var(--toolbar-height));
+
+  @media (max-width: 599px) {
+    min-height: calc(100vh - var(--toolbar-height-mobile));
+  }
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* ================= RTL SUPPORT ================= */
+html[dir='rtl'] {
+  direction: rtl;
+}
+
+html[dir='rtl'] mat-sidenav {
+  left: auto;
+  right: 0;
+}
+
+/* ================= BUTTON STYLING ================= */
+button.mat-icon-button {
+  color: var(--mdc-theme-on-primary);
+}
+
+/* ================= OPTIONAL TRANSITIONS ================= */
+mat-sidenav-content,
+mat-sidenav,
+mat-toolbar {
+  transition: background-color 0.3s, color 0.3s;
 }

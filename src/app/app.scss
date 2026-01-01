@@ -10,8 +10,11 @@
 
 .content {
   padding: 16px;
+  min-height: calc(100vh - 64px);
 }
 
-.spacer {
-  flex: 1;
+@media (max-width: 599px) {
+  .content {
+    min-height: calc(100vh - 56px);
+  }
 }
