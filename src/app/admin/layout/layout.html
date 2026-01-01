@@ -1,1 +1,22 @@
-<p>layout works!</p>
+
+<mat-nav-list>
+  <mat-card>
+    <mat-card-header>
+<div mat-card-avatar class="avatar"></div>
+      <mat-card-title></mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+
+  </mat-card>
+ <mat-nav-list>
+  <a mat-list-item
+     *ngFor="let item of routes; let i = index"
+     [routerLinkActive]="'active-link'"
+     [routerLink]="['/', item.path]">
+    <mat-icon class="sidenav-icon">{{ item.data.icon }}</mat-icon>
+    {{ item.data.label }}
+  </a>
+</mat-nav-list>
+
+
+</mat-nav-list>
